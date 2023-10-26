@@ -1,8 +1,11 @@
 
 export default function Home() {
   return (
-    <h1>
-      POMOBANGET
-    </h1>
+    <div>
+      <h1>
+        POMOBANGET
+      </h1>
+    </div>
+
   )
 }

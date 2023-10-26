@@ -13,7 +13,6 @@ const MINUTE = SECOND * 60;
 export const Clock = () => {
   const [isStarted, setIsStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
-
   const [timeLeft, setTimeLeft] = useState(1500)
 
   function start() {

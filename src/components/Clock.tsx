@@ -11,54 +11,63 @@ const MINUTE = SECOND * 60;
 
 
 export const Clock = () => {
-  const [deadline, setDeadline] = useState(add(new Date(), { minutes: 25 }))
-  const [now, setNow] = useState(1500)
   const [isStarted, setIsStarted] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
 
+  const [timeLeft, setTimeLeft] = useState(1500)
 
   function start() {
     setIsStarted(true)
-    setDeadline(add(new Date(), { minutes: 25, seconds: 1 }))
+  }
+
+  function pause() {
+    setIsPaused(!isPaused)
+  }
+
+  function reset() {
+    setTimeLeft(1500)
+    setIsStarted(false)
+    setIsPaused(false)
   }
 
   const minutes = useMemo(() => {
-    return (Math.floor(now / 60)).toLocaleString('en-US', {
+    return (Math.floor(timeLeft / 60)).toLocaleString('en-US', {
       minimumIntegerDigits: 2
     })
-  }, [now])
+  }, [timeLeft])
 
   const seconds = useMemo(() => {
-    return (now % 60).toLocaleString('en-US', {
+    return (timeLeft % 60).toLocaleString('en-US', {
       minimumIntegerDigits: 2
     })
-  }, [now])
+  }, [timeLeft])
 
   useEffect(() => {
-    if (isStarted) {
-      const interval = setInterval(
-        () => {
-          setNow(differenceInSeconds(deadline, new Date()))
-        },
-        1000,
-        );
+    if (isStarted && !isPaused) {
+      const interval = setInterval(() => {
+        setTimeLeft(timeLeft - 1)
+      }, 1000);
         
-        return () => clearInterval(interval);
-      }
-  }, [deadline]);
+      return () => clearInterval(interval);
+    }
+    console.log('jalan')
+  }, [timeLeft, isStarted, isPaused]);
 
   return (
     <div className="flex flex-col items-center">
       <div className="bg-white/25 shadow-xl relative opacity-80 py-2 px-16 rounded-2xl my-10">
-        <button className="absolute right-5 top-4">
+        <button onClick={reset} className="absolute right-5 top-4">
           <IoMdRefresh size={19} />
         </button>
         <p className="text-[8rem] font-bold">
           {minutes}:{seconds}
         </p>
       </div>
-      <button onClick={start} className="bg-primary shadow-xl opacity-80 py-5 px-10 w-1/3 rounded-2xl my-3">
+      <button onClick={() => {
+        !isStarted ? start() : pause()
+      }} className="bg-primary shadow-xl opacity-80 py-5 px-10 w-1/3 rounded-2xl my-3">
         <p className="text-[2rem] font-bold text-secondary">
-          Start
+          {!isStarted || isPaused ? 'Start' : 'Pause'}
         </p>
       </button>
     </div>

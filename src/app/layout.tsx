@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 
-const font= Plus_Jakarta_Sans({subsets: ['latin-ext']})
+const font= Plus_Jakarta_Sans({subsets: ['vietnamese']})
 
 export const metadata: Metadata = {
   title: 'Create Next App',

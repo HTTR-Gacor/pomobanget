@@ -8,11 +8,19 @@ import {IoMdRefresh} from "react-icons/io"
 const SECOND = 1_000;
 const MINUTE = SECOND * 60;
 
+interface ClockProps {
+  isStarted: boolean;
+  setIsStarted: (isStarted: boolean) => void;
+
+  isPaused: boolean;
+  setIsPaused: (isPaused: boolean) => void;
+}
 
 
-export const Clock = () => {
-  const [isStarted, setIsStarted] = useState(false)
-  const [isPaused, setIsPaused] = useState(false)
+
+export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, setIsPaused}) => {
+  // const [isStarted, setIsStarted] = useState(false)
+  // const [isPaused, setIsPaused] = useState(false)
   const [timeLeft, setTimeLeft] = useState(1500)
 
   function start() {

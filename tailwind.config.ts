@@ -18,7 +18,8 @@ const config: Config = {
         'secondary': '#C0D8C0',
         'birutarreq': '#D4F0F0',
         'warnarapip': '#a3b2a4',
-        'warnahajik': '#143F46'
+        'warnahajik': '#143F46',
+        'warnatrias': '#87CEEB',
       }
     },
   },

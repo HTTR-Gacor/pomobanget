@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div className={`${isStarted && !isPaused ? 'bg-warnatrias' : 'bg-secondary'} flex flex-col justify-center items-center py-20 h-screen transition-all duration-500`}>
-      <Link href="/break" className="px-8 py-4 my-3 drop-shadow-xl rounded-xl bg-primary text-secondary font-bold text-3xl">
+      <Link href="/break" className="px-8 py-4 my-3 drop-shadow-xl rounded-xl bg-primary text-secondary font-bold text-xl md:text-3xl">
         Break
       </Link>
       <h1 className="text-3xl drop-shadow-md">

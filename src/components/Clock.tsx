@@ -86,14 +86,14 @@ export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, s
           } className="absolute right-5 top-4">
           <IoMdRefresh size={19} />
         </button>
-        <p className={`${isDark && 'text-secondary'} text-[8rem] font-bold`}>
+        <p className={`${isDark && 'text-secondary'} text-[4rem] md:text-[8rem] font-bold`}>
           {minutes}:{seconds}
         </p>
       </div>
       <button onClick={() => {
         !isStarted ? start() : pause()
-      }} className="bg-primary shadow-xl opacity-80 py-5 px-10 w-1/3 rounded-2xl my-3">
-        <p className="text-[2rem] font-bold text-secondary">
+      }} className="bg-primary shadow-xl opacity-80 py-3 md:py-5 px-6 md:px-10 rounded-2xl my-3">
+        <p className="text-[1.7rem] md:text-[2rem] font-bold text-secondary">
           {!isStarted || isPaused ? 'Start' : 'Pause'}
         </p>
       </button>

@@ -14,14 +14,19 @@ interface ClockProps {
 
   isPaused: boolean;
   setIsPaused: (isPaused: boolean) => void;
+
+  timeLeft: number;
+  setTimeLeft: (timeLeft: number) => void;
+
+  isDark?: boolean;
 }
 
 
 
-export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, setIsPaused}) => {
+export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, setIsPaused, timeLeft, setTimeLeft, isDark}) => {
   // const [isStarted, setIsStarted] = useState(false)
   // const [isPaused, setIsPaused] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(1500)
+  // const [timeLeft, setTimeLeft] = useState(1500)
 
   function start() {
     setIsStarted(true)
@@ -33,6 +38,12 @@ export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, s
 
   function reset() {
     setTimeLeft(1500)
+    setIsStarted(false)
+    setIsPaused(false)
+  }
+
+  function resetBreak() {
+    setTimeLeft(300)
     setIsStarted(false)
     setIsPaused(false)
   }
@@ -66,7 +77,7 @@ export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, s
         <button onClick={reset} className="absolute right-5 top-4">
           <IoMdRefresh size={19} />
         </button>
-        <p className="text-[8rem] font-bold">
+        <p className={`${isDark && 'text-secondary'} text-[8rem] font-bold`}>
           {minutes}:{seconds}
         </p>
       </div>

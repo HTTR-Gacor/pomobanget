@@ -19,11 +19,13 @@ interface ClockProps {
   setTimeLeft: (timeLeft: number) => void;
 
   isDark?: boolean;
+
+  mode: string;
 }
 
 
 
-export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, setIsPaused, timeLeft, setTimeLeft, isDark}) => {
+export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, setIsPaused, timeLeft, setTimeLeft, isDark, mode}) => {
   // const [isStarted, setIsStarted] = useState(false)
   // const [isPaused, setIsPaused] = useState(false)
   // const [timeLeft, setTimeLeft] = useState(1500)
@@ -74,7 +76,14 @@ export const Clock:React.FC<ClockProps> = ({isStarted, setIsStarted, isPaused, s
   return (
     <div className="flex flex-col items-center">
       <div className="bg-white/25 shadow-xl relative opacity-80 py-2 px-16 rounded-2xl my-10">
-        <button onClick={reset} className="absolute right-5 top-4">
+        <button onClick={ () => {
+          if (mode === 'break'){
+            resetBreak()
+          } else if (mode === 'work'){
+            reset()
+          }
+        }
+          } className="absolute right-5 top-4">
           <IoMdRefresh size={19} />
         </button>
         <p className={`${isDark && 'text-secondary'} text-[8rem] font-bold`}>

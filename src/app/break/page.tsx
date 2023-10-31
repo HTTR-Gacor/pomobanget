@@ -9,6 +9,7 @@ export default function Break() {
   const [isStarted, setIsStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [timeLeft, setTimeLeft] = useState(300)
+  const [mode] = useState('break')
   
 
   return (
@@ -24,7 +25,7 @@ export default function Break() {
       </h1>
       <Clock isStarted={isStarted} setIsStarted={setIsStarted} 
       isPaused={isPaused} setIsPaused={setIsPaused}
-      timeLeft={timeLeft} setTimeLeft={setTimeLeft}
+      timeLeft={timeLeft} setTimeLeft={setTimeLeft} mode={mode}
       isDark/>
     </div>
 

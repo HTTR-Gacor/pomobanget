@@ -2,6 +2,7 @@
 
 import { Clock } from "@/components/Clock";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useEffect, useState, useMemo } from "react";
 
 
@@ -10,7 +11,16 @@ export default function Break() {
   const [isPaused, setIsPaused] = useState(false)
   const [timeLeft, setTimeLeft] = useState(300)
   const [mode] = useState('break')
-  
+  const router = useRouter()
+  const audio = new Audio('/sounds/work-finished.mp3')
+
+  useEffect(() => {
+    if (timeLeft == 0) {
+      setIsStarted(false)
+      router.push('/')
+      audio.play()
+    }
+  }, [timeLeft, router])
 
   return (
     <div className={`${isStarted && !isPaused ? 'bg-warnahajik' : 'bg-[#4682B4]'} flex flex-col justify-center items-center py-20 h-screen transition-all duration-500`}>
@@ -28,6 +38,5 @@ export default function Break() {
       timeLeft={timeLeft} setTimeLeft={setTimeLeft} mode={mode}
       isDark/>
     </div>
-
   )
 }

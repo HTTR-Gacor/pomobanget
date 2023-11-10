@@ -5,18 +5,19 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useMemo } from "react";
 
-
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(5)
+  const [timeLeft, setTimeLeft] = useState(1500)
   const [mode] = useState('work')
   const router = useRouter()
+  const audio = new Audio('/sounds/work-finished.mp3')
 
   useEffect(() => {
     if (timeLeft == 0) {
       setIsStarted(false)
       router.push('/break')
+      audio.play()
     }
   }, [timeLeft, router])
 

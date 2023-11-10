@@ -2,15 +2,23 @@
 
 import { Clock } from "@/components/Clock";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useEffect, useState, useMemo } from "react";
 
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(1500)
+  const [timeLeft, setTimeLeft] = useState(5)
   const [mode] = useState('work')
+  const router = useRouter()
 
+  useEffect(() => {
+    if (timeLeft == 0) {
+      setIsStarted(false)
+      router.push('/break')
+    }
+  }, [timeLeft, router])
 
   return (
     <div className={`${isStarted && !isPaused ? 'bg-warnatrias' : 'bg-secondary'} flex flex-col justify-center items-center py-20 h-screen transition-all duration-500`}>

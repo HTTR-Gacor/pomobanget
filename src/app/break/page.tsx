@@ -3,7 +3,7 @@
 import { Clock } from "@/components/Clock";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function Break() {
@@ -12,13 +12,13 @@ export default function Break() {
   const [timeLeft, setTimeLeft] = useState(300)
   const [mode] = useState('break')
   const router = useRouter()
-  const audio = new Audio('/sounds/work-finished.mp3')
+  // const audio = new Audio('/sounds/work-finished.mp3')
 
   useEffect(() => {
     if (timeLeft == 0) {
       setIsStarted(false)
       router.push('/')
-      audio.play()
+      // audio.play()
     }
   }, [timeLeft, router])
 

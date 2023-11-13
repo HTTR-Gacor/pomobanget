@@ -11,13 +11,13 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState(1500)
   const [mode] = useState('work')
   const router = useRouter()
-  const audio = new Audio('/sounds/work-finished.mp3')
+  // const audio = new Audio('/sounds/work-finished.mp3')
 
   useEffect(() => {
     if (timeLeft == 0) {
       setIsStarted(false)
       router.push('/break')
-      audio.play()
+      // audio.play()
     }
   }, [timeLeft, router])
 

@@ -13,7 +13,6 @@ export default function Home() {
   const router = useRouter()
   const [audio] = React.useState<HTMLAudioElement | null>(typeof Audio !== 'undefined' ? new Audio('https://www.youtube.com/watch?v=6FyyEBuetxo') : null)
 
-
   useEffect(() => {
     if (timeLeft == 0) {
       setIsStarted(false)
